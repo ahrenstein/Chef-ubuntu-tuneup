@@ -1,0 +1,8 @@
+name             'ubuntu-tuneup'
+maintainer       'Matthew Ahrenstein'
+maintainer_email '@ahrenstein'
+license          'See LICENSE.txt'
+description      'Performs various tweaks on fresh Ubuntu installs'
+long_description 'Removes Landscape garbage, tweaks .profile for root'
+version          '0.1.0'
+depends          'line', '0.6.1'

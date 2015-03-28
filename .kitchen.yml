@@ -1,0 +1,22 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: ubuntu1204
+    driver:
+      box: ubuntu/precise64
+      box_url: ubuntu/precise64
+  - name: ubuntu1404
+    driver:
+      box: ubuntu/trusty64
+      box_url: ubuntu/trusty64
+
+suites:
+  - name: default
+    run_list:
+      - recipe[ubuntu-tuneup::default]
+    attributes:
