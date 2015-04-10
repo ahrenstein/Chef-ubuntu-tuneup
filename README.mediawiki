@@ -1,4 +1,4 @@
-=== Chef Recipe - Linux Tweak ===
+=== Chef Cookbook - Linux Tweak ===
 This Chef recipe will perform a few tweaks on linux systems, and a few Ubuntu specific tweaks on Ubuntu systems.
 === Tweaks Performed ===
 *1) Remove landscape packages (Ubuntu only)
