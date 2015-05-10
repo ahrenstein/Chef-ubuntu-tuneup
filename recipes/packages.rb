@@ -32,6 +32,8 @@ end
 # Make sure vim is present
 case node['os']
   when 'linux'
+
+    include_recipe 'apt' # This allows apt-get update to run before trying to install packages
     package "#{vim_package}" do
       action :install
     end
@@ -40,6 +42,11 @@ case node['os']
     package 'curl' do
       action :install
     end
+
+    package 'gnupg2' do
+      action :install
+    end
+
   else
     # Do nothing
 end

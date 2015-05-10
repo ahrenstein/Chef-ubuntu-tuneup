@@ -7,7 +7,10 @@ This Chef recipe will perform a few tweaks on linux systems, and a few Ubuntu sp
 Tweaks Performed
 ------------
 1. Remove landscape packages (Ubuntu only)
-2. Install vim
+2. Install some packages I commonly use
+  1. vim
+  2. curl (For some reason not always present on base systems)
+  3. gnupg2 (I use gpg2 a lot)
 3. Add some custom bash settings for all users
   1. Add aliases for ls -lh and ls -lhtr
   2. Add an alias to change rm into rm -i
