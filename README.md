@@ -22,7 +22,8 @@ Requirements
 ------------
 1. Chef (Tested on Chef 12)
 2. Linux chef-clients (Tested on Ubuntu 12.04, Ubuntu 14.04, Debian 7.6, CentOS 5.10 and CentOS 6.5 but kitchen will let you test anything you want)
-3. The line cookbook from Chef SuperMarket (tested and locked to 0.6.1)
+3. The line cookbook from Chef Supermarket (tested and locked to 0.6.1)
+4. The apt cookbook from Chef Supermarket
 
 Installation Tips
 ------------
