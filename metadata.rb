@@ -4,7 +4,7 @@ maintainer_email '@ahrenstein'
 license          'See LICENSE.txt'
 description      'Performs various tweaks on fresh Linux installs'
 long_description 'Removes Landscape garbage from Ubuntu systems, tweaks system-wide bashrc settings'
-version          '0.2.1'
+version          '0.2.2'
 depends          'line', '0.6.1'
 
 %w{ ubuntu debian centos }.each do |os|
