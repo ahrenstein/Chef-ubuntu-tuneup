@@ -35,6 +35,11 @@ case node['os']
     package "#{vim_package}" do
       action :install
     end
+
+    # Make sure curl is installed
+    package 'curl' do
+      action :install
+    end
   else
     # Do nothing
 end

@@ -38,6 +38,10 @@ describe 'linux-tweak::default' do
     it { should be_installed }
   end
 
+  describe package('curl') do
+    it { should be_installed }
+  end
+
   describe file("#{bash_path}") do
     its(:content) { should match /export EDITOR=vim/ }
   end
