@@ -17,6 +17,7 @@ Tweaks Performed
   3. Change the history so it maintains 5000 entries and have date/time stamps
   4. Export a nice bash PS1
   5. Export vim as the default editor
+  6. Delete the .bashrc for root and uids 500-900
 
 Requirements
 ------------
@@ -39,7 +40,7 @@ Bug Fixes
 ------------
 
 1. v0.2.4
-  1. Alias for l used a pattern match for ll so everytime it ran, it would replace ll, and ll would be recreated by its resource. This led to repeating l aliases. This has been fixed.
+  1. Alias for l used a pattern match for ll so every time it ran, it would replace ll, and ll would be recreated by its resource. This led to repeating l aliases. This has been fixed.
 
 Use cases
 ------------

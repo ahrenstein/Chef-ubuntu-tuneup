@@ -12,6 +12,7 @@ This Chef recipe will perform a few tweaks on linux systems, and a few Ubuntu sp
 **C) Change the history so it maintains 5000 entries and have date/time stamps
 **D) Export a nice bash PS1
 **E) Export vim as the default editor
+**F) Delete the .bashrc for root and uids 500-900
 === Requirements ===
 *1) Chef (Tested on Chef 12)
 *2) Linux chef-clients (Tested on Ubuntu 12.04, Ubuntu 14.04, Debian 7.6, CentOS 5.10 and CentOS 6.5 but kitchen will let you test anything you want)
@@ -24,6 +25,6 @@ This Chef recipe will perform a few tweaks on linux systems, and a few Ubuntu sp
 **A) Well sort of. I didn't spend the effort to escape the bash PS1 for spec testing so it only tests that the bashrc has a PS1 exported.
 === Bug Fixes ===
 *1) v0.2.4
-**A) Alias for l used a pattern match for ll so everytime it ran, it would replace ll, and ll would be recreated by its resource. This led to repeating l aliases. This has been fixed.
+**A) Alias for l used a pattern match for ll so every time it ran, it would replace ll, and ll would be recreated by its resource. This led to repeating l aliases. This has been fixed.
 === Use cases ===
 If you like the shell preferences I set (PS1, aliases, etc...) then you can use this module.

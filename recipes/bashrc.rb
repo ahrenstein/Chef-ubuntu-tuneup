@@ -73,7 +73,7 @@ end
 
 # Loop through the max amount of local users we expect to have on the system and remove their personal .bashrc files
 node['etc']['passwd'].each do |user, data|
-  if (data['uid'].to_i >= 500) and (data['uid'].to_i <=550)
+  if (data['uid'].to_i >= 500) and (data['uid'].to_i <=900)
 
     # Remove each user's .bashrc
     file "#{user} bashrc" do
@@ -84,7 +84,7 @@ node['etc']['passwd'].each do |user, data|
 end
 
 # Remove the local .bashrc for root
-file 'root bashrc' do
+file '/root/.bashrc' do
   path '/root/.bashrc'
   action :delete
 end
