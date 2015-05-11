@@ -36,10 +36,12 @@ Limitations
 1. This recipe has been tested with Ubuntu 12.04, Ubuntu 14.04, Debian 7.6, CentOS 5.10 and CentOS 6.5 but you can test it with any other Linux distro using kitchen. The full spec test is there.
  1. Well sort of. I didn't spen
 
-Bug Fixes
+Bug Fixes & Changes
 ------------
 
-1. v0.2.4
+1. v0.2.5
+  1. CentOS users were not sourcing the /etc/bashrc automatically. This was fixed
+2. v0.2.4
   1. Alias for l used a pattern match for ll so every time it ran, it would replace ll, and ll would be recreated by its resource. This led to repeating l aliases. This has been fixed.
 
 Use cases

@@ -80,6 +80,19 @@ node['etc']['passwd'].each do |user, data|
       path "#{data['dir']}/.bashrc"
       action :delete
     end
+
+    # CentOS machines need /etc/bashrc sourced via a custom .bash_profile
+    case node['platform_family']
+      when 'rhel'
+        template "#{user} bash_profile" do
+          source 'bash_profile.erb'
+          path "#{data['dir']}/.bash_profile"
+          owner "#{user}"
+          mode '644'
+        end
+      else
+        # Do nothing
+    end
   end
 end
 
@@ -87,4 +100,18 @@ end
 file '/root/.bashrc' do
   path '/root/.bashrc'
   action :delete
+end
+
+# Also do the same bash_profile template for root
+case node['platform_family']
+  when 'rhel'
+    template 'root bash_profile' do
+      source 'bash_profile.erb'
+      path '/root/.bash_profile'
+      owner 'root'
+      group 'root'
+      mode '644'
+    end
+  else
+    # Do nothing
 end

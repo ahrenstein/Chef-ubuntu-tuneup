@@ -78,4 +78,16 @@ describe 'linux-tweak::default' do
   describe file("#{bash_path}") do
     its(:content) { should match /export PS1=/ }
   end
+
+  # Test if .bash_profile has been modified for root
+  if os[:family] == 'redhat'
+    describe file('/root/.bash_profile') do
+      its(:content) { should match /\/etc\/bashrc/ }
+    end
+
+    # Now test it vagrant to see if the uid search works
+    describe file('/home/vagrant/.bash_profile') do
+      its(:content) { should match /\/etc\/bashrc/ }
+    end
+  end
 end
