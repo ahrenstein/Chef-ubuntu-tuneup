@@ -82,3 +82,9 @@ node['etc']['passwd'].each do |user, data|
     end
   end
 end
+
+# Remove the local .bashrc for root
+file 'root bashrc' do
+  path '/root/.bashrc'
+  action :delete
+end

@@ -78,4 +78,13 @@ describe 'linux-tweak::default' do
   describe file("#{bash_path}") do
     its(:content) { should match /export PS1=/ }
   end
+
+  # Make sure local .bashrc's are removed
+  describe file('/root/.bashrc') do
+    it { should_not exist }
+  end
+
+  describe file('/home/vagrant/.bashrc') do
+    it { should_not exist }
+  end
 end
