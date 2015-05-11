@@ -18,7 +18,7 @@ end
 # Add the l alias
 replace_or_add 'l alias' do
   path "#{bash_path}"
-  pattern '^alias ll=.*$'
+  pattern '^alias l=.*$'
   line 'alias l=\'ls -lh\''
 end
 
@@ -69,4 +69,16 @@ replace_or_add 'history file limit' do
   path "#{bash_path}"
   pattern '^export EDITOR=.*$'
   line 'export EDITOR=vim'
+end
+
+# Loop through the max amount of local users we expect to have on the system and remove their personal .bashrc files
+node['etc']['passwd'].each do |user, data|
+  if (data['uid'].to_i >= 500) and (data['uid'].to_i <=550)
+
+    # Remove each user's .bashrc
+    file "#{user} bashrc" do
+      path "#{data['dir']}/.bashrc"
+      action :delete
+    end
+  end
 end

@@ -6,14 +6,8 @@ provisioner:
   name: chef_solo
 
 platforms:
-  - name: ubuntu1204
-    driver:
-      box: ubuntu/precise64
-      box_url: ubuntu/precise64
-  - name: ubuntu1404
-    driver:
-      box: ubuntu/trusty64
-      box_url: ubuntu/trusty64
+  - name: ubuntu-12.04
+  - name: ubuntu-14.04
   - name: debian76
     driver:
       box: chef/debian-7.6
