@@ -39,9 +39,11 @@ Limitations
 Bug Fixes & Changes
 ------------
 
-1. v0.2.5
+1. v0.2.6
+  1. Changed the range of UIDs bashrc is customized for to be 500-2000
+2. v0.2.5
   1. CentOS users were not sourcing the /etc/bashrc automatically. This was fixed
-2. v0.2.4
+3. v0.2.4
   1. Alias for l used a pattern match for ll so every time it ran, it would replace ll, and ll would be recreated by its resource. This led to repeating l aliases. This has been fixed.
 
 Use cases
