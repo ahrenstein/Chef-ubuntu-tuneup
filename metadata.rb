@@ -7,7 +7,7 @@ long_description 'Removes Landscape garbage from Ubuntu systems, tweaks system-w
 source_url       'https://github.com/ahrenstein/ChefCookbook-linux-tweak'
 issues_url       'https://github.com/ahrenstein/ChefCookbook-linux-tweak/issues'
 version          '0.2.7'
-depends          'line''
+depends          'line'
 depends          'apt'
 
 %w{ ubuntu debian centos }.each do |os|
