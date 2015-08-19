@@ -11,6 +11,9 @@ Tweaks Performed
   1. vim
   2. curl (For some reason not always present on base systems)
   3. gnupg2 (I use gpg2 a lot)
+  4. atop
+  5. bmon
+  6. git
 3. Add some custom bash settings for all users
   1. Add aliases for ls -lh and ls -lhtr
   2. Add an alias to change rm into rm -i
@@ -39,11 +42,16 @@ Limitations
 Bug Fixes & Changes
 ------------
 
-1. v0.2.6
+1. v0.2.7
+  1. Removed line cookbook version requirement
+  2. Remove Puppet if installed since we use Chef (Assists with migrations from Puppet to Chef)
+  3. Make sure atop and bmon are installed
+  4. Make sure git is installed
+2. v0.2.6
   1. Changed the range of UIDs bashrc is customized for to be 500-2000
-2. v0.2.5
+3. v0.2.5
   1. CentOS users were not sourcing the /etc/bashrc automatically. This was fixed
-3. v0.2.4
+4. v0.2.4
   1. Alias for l used a pattern match for ll so every time it ran, it would replace ll, and ll would be recreated by its resource. This led to repeating l aliases. This has been fixed.
 
 Use cases

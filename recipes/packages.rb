@@ -20,6 +20,11 @@ case node['platform']
     # Do nothing
 end
 
+# Make sure Puppet is removed since we don't use it
+package 'puppet' do
+  action :purge
+end
+
 # This if block checks if the OS is rhel based and sets the rhel vim package name if it is. (Returns as "redhat" in Serverspec code)
 case node['platform_family']
   when 'rhel'
@@ -38,13 +43,11 @@ case node['os']
       action :install
     end
 
-    # Make sure curl is installed
-    package 'curl' do
-      action :install
-    end
-
-    package 'gnupg2' do
-      action :install
+    # Make sure packages we care about are installed
+    %w{'curl', gpupg2', 'git', 'atop', 'bmon'}.each do |pkg|
+      package pkg do
+        action :install
+      end
     end
 
   else
