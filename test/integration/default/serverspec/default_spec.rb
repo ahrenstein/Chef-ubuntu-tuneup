@@ -30,8 +30,7 @@ describe 'linux-tweak::default' do
   end
 
   # Check for bmon on non-rhel systems
-  if os[:family] != 'rhel'
-    do
+  if os[:family] != 'redhat'
     describe package('bmon') do
       it { should be_installed }
     end
