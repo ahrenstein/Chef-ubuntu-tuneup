@@ -28,6 +28,10 @@ end
 # This if block checks if the OS is rhel based and sets the rhel vim package name if it is. (Returns as "redhat" in Serverspec code)
 case node['platform_family']
   when 'rhel'
+
+    # Make sure EPEL repos exist on RHEL-based platforms
+    include_recipe 'yum-epel'
+
     vim_package = 'vim-enhanced'
   # If not we assume the OS is Debian based
   else
@@ -43,8 +47,12 @@ case node['os']
       action :install
     end
 
+    package 'bmon' do
+      action :install
+    end
+
     # Make sure packages we care about are installed
-    %w{curl gnupg2 git atop bmon}.each do |pkg|
+    %w{curl gnupg2 git atop}.each do |pkg|
       package pkg do
         action :install
       end

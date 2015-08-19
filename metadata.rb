@@ -9,6 +9,7 @@ issues_url       'https://github.com/ahrenstein/ChefCookbook-linux-tweak/issues'
 version          '0.2.7'
 depends          'line'
 depends          'apt'
+depends          'yum-epel'
 
 %w{ ubuntu debian centos }.each do |os|
   supports os
