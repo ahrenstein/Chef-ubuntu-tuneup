@@ -6,7 +6,7 @@ This Chef recipe will perform a few tweaks on linux systems, and a few Ubuntu sp
 
 Tweaks Performed
 ------------
-1. Added EPEL repos (RHEL-based systems only)
+1. Added EPEL repos (rhel-based systems only)
 2. Remove the following packages;
   1. puppet (Since we are using Chef)
   2. landscape-client-ui (Ubuntu only)
@@ -18,7 +18,7 @@ Tweaks Performed
   2. curl (For some reason not always present on base systems)
   3. gnupg2 (I use gpg2 a lot)
   4. atop
-  5. bmon (Not on RHEL-based systems)
+  5. bmon (Not on rhel-based systems)
   6. git
 4. Add some custom bash settings for all users
   1. Add aliases for ls -lh and ls -lhtr
@@ -50,7 +50,7 @@ Bug Fixes & Changes
 ------------
 
 1. v0.2.7
-  1. Added dependency on yum-epel from Supermarket for installing git, atop, and bmon from EPEL repo on RHEL-based systems
+  1. Added dependency on yum-epel from Supermarket for installing git, atop, and bmon from EPEL repo on rhel-based systems
   1. Removed line cookbook version requirement
   2. Remove Puppet if installed since we use Chef (Assists with migrations from Puppet to Chef)
   3. Make sure atop is installed
