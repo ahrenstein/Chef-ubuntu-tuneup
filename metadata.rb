@@ -6,9 +6,10 @@ description      'Performs various tweaks on fresh Linux installs'
 long_description 'Removes Landscape garbage from Ubuntu systems, tweaks system-wide bashrc settings'
 source_url       'https://github.com/ahrenstein/ChefCookbook-linux-tweak'
 issues_url       'https://github.com/ahrenstein/ChefCookbook-linux-tweak/issues'
-version          '0.2.6'
-depends          'line', '0.6.1'
+version          '0.2.7'
+depends          'line'
 depends          'apt'
+depends          'yum-epel'
 
 %w{ ubuntu debian centos }.each do |os|
   supports os

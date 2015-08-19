@@ -11,7 +11,7 @@
 case node['platform']
   when 'ubuntu'
     # This creates an array of strings and performs the Chef package functionality of each array entry via a do loop
-    %w{'landscape-client-ui', 'landscape-client-ui-install', 'landscape-client', 'landscape-common'}.each do |pkg|
+    %w{landscape-client-ui landscape-client-ui-install landscape-client landscape-common}.each do |pkg|
       package pkg do
         action :purge
       end
@@ -20,31 +20,44 @@ case node['platform']
     # Do nothing
 end
 
-# This if block checks if the OS is rhel based and sets the rhel vim package name if it is. (Returns as "redhat" in Serverspec code)
+# Make sure Puppet is removed since we don't use it
+package 'puppet' do
+  action :purge
+end
+
+# This if block checks if the OS is rhel based and sets the rhel vim package name if it is. If not rhel-based then run the apt cookbook and install bmon (Returns as "redhat" in Serverspec code)
 case node['platform_family']
   when 'rhel'
+
+    # Make sure EPEL repos exist on rhel-based platforms
+    include_recipe 'yum-epel'
+
     vim_package = 'vim-enhanced'
   # If not we assume the OS is Debian based
   else
     vim_package = 'vim'
+
+    include_recipe 'apt' # This allows apt-get update to run before trying to install packages
+    # Install bmon
+    package 'bmon' do
+      action :install
+    end
+
 end
 
 # Make sure vim is present
 case node['os']
   when 'linux'
 
-    include_recipe 'apt' # This allows apt-get update to run before trying to install packages
     package "#{vim_package}" do
       action :install
     end
 
-    # Make sure curl is installed
-    package 'curl' do
-      action :install
-    end
-
-    package 'gnupg2' do
-      action :install
+    # Make sure packages we care about are installed
+    %w{curl gnupg2 git atop}.each do |pkg|
+      package pkg do
+        action :install
+      end
     end
 
   else

@@ -24,6 +24,18 @@ describe 'linux-tweak::default' do
     end
   end
 
+  # Verify Puppet is not installed
+  describe package('puppet') do
+    it { should_not be_installed }
+  end
+
+  # Check for bmon on non-rhel systems
+  if os[:family] != 'redhat'
+    describe package('bmon') do
+      it { should be_installed }
+    end
+  end
+
   # This if block checks if the OS is redhat based and sets the redhat based bashrc path and vim package name if it is. (Returns as "rhel" in Chef code)
   if os[:family] == 'redhat'
     bash_path = '/etc/bashrc'
@@ -43,6 +55,14 @@ describe 'linux-tweak::default' do
   end
 
   describe package('gnupg2') do
+    it { should be_installed }
+  end
+
+  describe package('atop') do
+    it { should be_installed }
+  end
+
+  describe package('git') do
     it { should be_installed }
   end
 
@@ -85,7 +105,7 @@ describe 'linux-tweak::default' do
       its(:content) { should match /\/etc\/bashrc/ }
     end
 
-    # Now test it vagrant to see if the uid search works
+    # Now test in vagrant to see if the uid search works
     describe file('/home/vagrant/.bash_profile') do
       its(:content) { should match /\/etc\/bashrc/ }
     end
