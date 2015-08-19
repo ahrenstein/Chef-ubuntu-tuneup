@@ -11,7 +11,7 @@
 case node['platform']
   when 'ubuntu'
     # This creates an array of strings and performs the Chef package functionality of each array entry via a do loop
-    %w{'landscape-client-ui', 'landscape-client-ui-install', 'landscape-client', 'landscape-common'}.each do |pkg|
+    %w{landscape-client-ui landscape-client-ui-install landscape-client landscape-common}.each do |pkg|
       package pkg do
         action :purge
       end
@@ -44,7 +44,7 @@ case node['os']
     end
 
     # Make sure packages we care about are installed
-    %w{'curl', gpupg2', 'git', 'atop', 'bmon'}.each do |pkg|
+    %w{curl gnupg2 git atop bmon}.each do |pkg|
       package pkg do
         action :install
       end

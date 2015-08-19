@@ -6,7 +6,12 @@ This Chef recipe will perform a few tweaks on linux systems, and a few Ubuntu sp
 
 Tweaks Performed
 ------------
-1. Remove landscape packages (Ubuntu only)
+1. Remove the following packages;
+  1. puppet (Since we are using Chef)
+  2. landscape-client-ui (Ubuntu only)
+  3. landscape-client-ui-install (Ubuntu only)
+  4. landscape-client (Ubuntu only)
+  5. landscape-common (Ubuntu only)
 2. Install some packages I commonly use
   1. vim
   2. curl (For some reason not always present on base systems)
