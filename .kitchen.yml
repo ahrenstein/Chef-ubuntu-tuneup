@@ -8,6 +8,7 @@ provisioner:
 platforms:
   - name: ubuntu-12.04
   - name: ubuntu-14.04
+  - name: ubuntu-15.04
   - name: debian76
     driver:
       box: chef/debian-7.6
@@ -27,3 +28,9 @@ suites:
     run_list:
       - recipe[linux-tweak::default]
     attributes:
+  - name: bashoverride
+    run_list:
+      - recipe[linux-tweak::default]
+    attributes:
+      linux-tweak:
+        PS1: 'export PS1="\[\033[38;5;0m\](\[$(tput sgr0)\]\[\033[38;5;15m\]\u\[$(tput sgr0)\]\[\033[38;5;0m\]@\[$(tput sgr0)\]\[\033[38;5;15m\]\h-\[$(tput sgr0)\]\[\033[38;5;0m\])(\[$(tput sgr0)\]\[\033[38;5;15m\]\t\[$(tput sgr0)\]\[\033[38;5;0m\])\[$(tput sgr0)\]\[\033[38;5;15m\]-\[$(tput sgr0)\]\[\033[38;5;0m\](\[$(tput sgr0)\]\[\033[38;5;12m\]\w\[$(tput sgr0)\]\[\033[38;5;0m\])\[$(tput sgr0)\]\[\033[38;5;15m\]\n\[$(tput sgr0)\]\[\033[38;5;0m\]>\[$(tput sgr0)\]"'

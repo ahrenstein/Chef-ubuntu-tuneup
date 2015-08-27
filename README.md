@@ -13,6 +13,7 @@ Tweaks Performed
   3. landscape-client-ui-install (Ubuntu only)
   4. landscape-client (Ubuntu only)
   5. landscape-common (Ubuntu only)
+  6. apparmor (Ubuntu only)
 3. Install some packages I commonly use
   1. vim
   2. curl (For some reason not always present on base systems)
@@ -41,26 +42,34 @@ Installation Tips
 
 1. I personally use Berks to install this into my Chef server, because it's easier.
 
+Attributes
+------------
+['linux-tweak']['PS1'] allows you to override my bash prompt preferences with your own. It should contain the entire "export PS1=" line, not just the prompt! 
+
 Limitations
 ------------
-1. This recipe has been tested with Ubuntu 12.04, Ubuntu 14.04, Debian 7.6, CentOS 5.10 and CentOS 6.5 but you can test it with any other Linux distro using kitchen. The full spec test is there.
+1. This recipe has been tested with Ubuntu 12.04, Ubuntu 14.04, Ubuntu 15.04, Debian 7.6, CentOS 5.10 and CentOS 6.5 but you can test it with any other Linux distro using kitchen. The full spec test is there.
  1. Well sort of. I didn't spend the effort to escape the bash PS1 for spec testing so it only tests that the bashrc has a PS1 exported.
 
 Bug Fixes & Changes
 ------------
 
-1. v0.2.7
+1. v0.2.8
+  1. Remove apparmor from Ubuntu systems
+  2. Testing against Ubuntu 15.04 has been added
+  3. The bash PS1 is now an environment variable
+2. v0.2.7
   1. Added dependency on yum-epel from Supermarket for installing git, atop, and bmon from EPEL repo on rhel-based systems
   1. Removed line cookbook version requirement
   2. Remove Puppet if installed since we use Chef (Assists with migrations from Puppet to Chef)
   3. Make sure atop is installed
   4. Make sure bmon is installed on non-rhel systems
   5. Make sure git is installed
-2. v0.2.6
+3. v0.2.6
   1. Changed the range of UIDs bashrc is customized for to be 500-2000
-3. v0.2.5
+4. v0.2.5
   1. CentOS users were not sourcing the /etc/bashrc automatically. This was fixed
-4. v0.2.4
+5. v0.2.4
   1. Alias for l used a pattern match for ll so every time it ran, it would replace ll, and ll would be recreated by its resource. This led to repeating l aliases. This has been fixed.
 
 Use cases
