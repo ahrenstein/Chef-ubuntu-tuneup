@@ -40,7 +40,7 @@ end
 replace_or_add 'bash prompt' do
   path "#{bash_path}"
   pattern '^export PS1.*$'
-  line 'export PS1="\[\e[00;31m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;34m\]\H\[\e[0m\]\[\e[00;37m\]:\[\e[0m\]\[\e[00;32m\]\w\[\e[0m\]\[\e[00;37m\] \t \\$ \[\e[0m\]"'
+  line node['linux-tweak']['PS1']
 end
 
 # Add a timestamp to history with the format MM/DD/YYYY HH:MM:SS

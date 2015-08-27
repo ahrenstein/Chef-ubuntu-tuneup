@@ -42,6 +42,10 @@ Installation Tips
 
 1. I personally use Berks to install this into my Chef server, because it's easier.
 
+Attributes
+------------
+['linux-tweak']['PS1'] allows you to override my bash prompt preferences with your own. It should contain the entire "export PS1=" line, not just the prompt! 
+
 Limitations
 ------------
 1. This recipe has been tested with Ubuntu 12.04, Ubuntu 14.04, Ubuntu 15.04, Debian 7.6, CentOS 5.10 and CentOS 6.5 but you can test it with any other Linux distro using kitchen. The full spec test is there.
@@ -53,6 +57,7 @@ Bug Fixes & Changes
 1. v0.2.8
   1. Remove apparmor from Ubuntu systems
   2. Testing against Ubuntu 15.04 has been added
+  3. The bash PS1 is now an environment variable
 2. v0.2.7
   1. Added dependency on yum-epel from Supermarket for installing git, atop, and bmon from EPEL repo on rhel-based systems
   1. Removed line cookbook version requirement
