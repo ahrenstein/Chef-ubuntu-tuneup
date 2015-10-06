@@ -9,18 +9,18 @@ platforms:
   - name: ubuntu-12.04
   - name: ubuntu-14.04
   - name: ubuntu-15.04
-  - name: debian76
+  - name: debian78
     driver:
-      box: chef/debian-7.6
-      box_url: chef/debian-7.6
-  - name: centos510
+      box: bento/debian-7.8
+      box_url: bento/debian-7.8
+  - name: centos511
     driver:
-      box: chef/centos-5.10
-      box_url: chef/centos-5.10
-  - name: centos65
+      box: bento/centos-5.11
+      box_url: bento/centos-5.11
+  - name: centos67
     driver:
-      box: chef/centos-6.5
-      box_url: chef/centos-6.5
+      box: bento/centos-6.7
+      box_url: bento/centos-6.7
 
 
 suites:
