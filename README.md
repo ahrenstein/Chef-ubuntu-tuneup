@@ -56,6 +56,7 @@ Bug Fixes & Changes
 
 1. v0.2.9
   1. Kitchen is now using new boxes due to Chef.IO discontinuing some of them
+  2. Removed random .DS_Store files that snuck in to a commit
 2. v0.2.8
   1. Remove apparmor from Ubuntu systems
   2. Testing against Ubuntu 15.04 has been added
