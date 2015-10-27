@@ -43,8 +43,11 @@ describe 'linux-tweak::default' do
   if os[:family] == 'redhat'
     bash_path = '/etc/bashrc'
     vim_package = 'vim-enhanced'
+  elsif os[:family] == 'freebsd'
+    bash_path = '/etc/bashrc'
+    vim_package = 'vim'
     # If not we assume the OS is Debian based
-  else
+    else
     bash_path = '/etc/bash.bashrc'
     vim_package = 'vim'
   end
@@ -53,12 +56,19 @@ describe 'linux-tweak::default' do
     it { should be_installed }
   end
 
+  describe package('bash') do
+    it { should be_installed }
+  end
+
   describe package('curl') do
     it { should be_installed }
   end
 
-  describe package('gnupg2') do
-    it { should be_installed }
+  # Only check for gnupg2 if not FreeBSD
+  if os[:family] != 'freebsd'
+    describe package('gnupg2') do
+      it { should be_installed }
+    end
   end
 
   describe package('atop') do
@@ -102,7 +112,7 @@ describe 'linux-tweak::default' do
     its(:content) { should match /00;31m/ } # Look for a partial match of the default PS1
   end
 
-  # Test if .bash_profile has been modified for root
+  # Test if .bash_profile has been modified for root on rhel
   if os[:family] == 'redhat'
     describe file('/root/.bash_profile') do
       its(:content) { should match /\/etc\/bashrc/ }
@@ -112,5 +122,11 @@ describe 'linux-tweak::default' do
     describe file('/home/vagrant/.bash_profile') do
       its(:content) { should match /\/etc\/bashrc/ }
     end
+  elsif os[:family] == 'freebsd' # Test if .bashrc has been modified for root on freebsd
+    describe file('/root/.bashrc') do
+      its(:content) { should match /\/etc\/bashrc/ }
+    end
+
+    # FreeBSD systems are being run as root only boxes so we don't check the vagrant user
   end
 end

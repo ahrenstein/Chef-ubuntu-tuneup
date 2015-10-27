@@ -6,9 +6,9 @@
 
 # This recipe will customize system-wide bashrc with some very nice aliases and a few other good settings
 
-# This if block checks if the OS is rhel based and sets the rhel based bashrc path if it is. (Returns as "redhat" in Serverspec code)
+# This if block checks if the OS is rhel or freebsd based and sets the correct bashrc path if it is. ("rhel" returns as "redhat" in Serverspec code)
 case node['platform_family']
-  when 'rhel'
+  when 'rhel', 'freebsd'
     bash_path = '/etc/bashrc'
   # If not we assume the OS is Debian based
   else
@@ -71,38 +71,37 @@ replace_or_add 'history file limit' do
   line 'export EDITOR=vim'
 end
 
-# Loop through the max amount of local users we expect to have on the system and remove their personal .bashrc files
+# Loop through the max amount of local users we expect to have on the system and remove their personal .bashrc files if Ubuntu
+# otherwise place a file in the correct path to source the system-wide bashrc
 node['etc']['passwd'].each do |user, data|
   if (data['uid'].to_i >= 500) and (data['uid'].to_i <=2000)
 
-    # Remove each user's .bashrc
-    file "#{user} bashrc" do
-      path "#{data['dir']}/.bashrc"
-      action :delete
-    end
-
-    # CentOS machines need /etc/bashrc sourced via a custom .bash_profile
     case node['platform_family']
+      when 'debian', 'ubuntu'
+        # Remove each user's .bashrc
+        file "#{user} bashrc" do
+          path "#{data['dir']}/.bashrc"
+          action :delete
+        end
+
       when 'rhel'
+        # CentOS machines need /etc/bashrc sourced via a custom .bash_profile
         template "#{user} bash_profile" do
           source 'bash_profile.erb'
           path "#{data['dir']}/.bash_profile"
           owner "#{user}"
           mode '644'
         end
-      else
-        # Do nothing
+      when 'freebsd'
+        # Do nothing since FreeBSD systems will be run as root only boxes
     end
+  else
+    # Do nothing
   end
 end
 
-# Remove the local .bashrc for root
-file '/root/.bashrc' do
-  path '/root/.bashrc'
-  action :delete
-end
 
-# Also do the same bash_profile template for root
+# Also do the same bash_profile template for root and delete the root bashrc for debian systems
 case node['platform_family']
   when 'rhel'
     template 'root bash_profile' do
@@ -111,6 +110,20 @@ case node['platform_family']
       owner 'root'
       group 'root'
       mode '644'
+    end
+  when 'freebsd'
+    template 'root bashrc' do
+      source 'bash_profile.erb'
+      path '/root/.bashrc'
+      owner 'root'
+      group 'wheel'
+      mode '644'
+    end
+  when 'debian', 'ubuntu'
+    # Remove the local .bashrc for root
+    file '/root/.bashrc' do
+      path '/root/.bashrc'
+      action :delete
     end
   else
     # Do nothing
