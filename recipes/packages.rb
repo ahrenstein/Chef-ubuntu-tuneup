@@ -7,6 +7,13 @@
 # This recipe will remove all the Landscape garbage that Canonical thought we would want on our servers.
 # It will also make sure vim is present since I set that as the default editor
 
+# Run apt cookbook to refresh apt cache on debian-based systems
+case node['platform']
+  when 'debian', 'ubuntu'
+    include_recipe 'apt' # This allows apt-get update to run before trying to install packages
+  else
+    # Do nothing
+end
 # Let's only try to purge Landscape from Ubuntu
 case node['platform']
   when 'ubuntu'
@@ -37,7 +44,6 @@ case node['platform_family']
   else
     vim_package = 'vim'
 
-    include_recipe 'apt' # This allows apt-get update to run before trying to install packages
     # Install bmon
     package 'bmon' do
       action :install
@@ -47,19 +53,30 @@ end
 
 # Make sure vim is present
 case node['os']
-  when 'linux'
+  when 'linux', 'freebsd'
 
     package "#{vim_package}" do
       action :install
     end
 
     # Make sure packages we care about are installed
-    %w{curl gnupg2 git atop}.each do |pkg|
+    %w{bash curl git atop}.each do |pkg|
       package pkg do
         action :install
       end
     end
 
+  else
+    # Do nothing
+end
+
+# FreeBSD doesn't have gnupg2 so we check for Linux here as well
+case node['os']
+  when 'linux'
+
+    package 'gnupg2' do
+      action :install
+    end
   else
     # Do nothing
 end

@@ -6,7 +6,6 @@ provisioner:
   name: chef_solo
 
 platforms:
-  - name: ubuntu-12.04
   - name: ubuntu-14.04
   - name: ubuntu-15.04
   - name: debian78
@@ -21,6 +20,10 @@ platforms:
     driver:
       box: bento/centos-6.7
       box_url: bento/centos-6.7
+  - name: freebsd10
+    driver:
+      box: bento/freebsd-10.2
+      box_url: bento/freebsd-10.2
 
 
 suites:
