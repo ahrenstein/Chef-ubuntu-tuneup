@@ -96,6 +96,14 @@ describe 'linux-tweak::default' do
   end
 
   describe file("#{bash_path}") do
+    its(:content) { should match /alias ssh=\'ssh -A\'/ }
+  end
+
+  describe file("#{bash_path}") do
+    its(:content) { should match /alias root=\'ssh -A -lroot\'/ }
+  end
+
+  describe file("#{bash_path}") do
     its(:content) { should match /export HISTTIMEFORMAT="%m\/%d\/%G %H:%M:%S / }
   end
 
@@ -122,8 +130,13 @@ describe 'linux-tweak::default' do
     describe file('/home/vagrant/.bash_profile') do
       its(:content) { should match /\/etc\/bashrc/ }
     end
-  elsif os[:family] == 'freebsd' # Test if .bashrc has been modified for root on freebsd
+
+  elsif os[:family] == 'freebsd' # Test if .bashrc and .bash_profile have been modified for root on freebsd
     describe file('/root/.bashrc') do
+      its(:content) { should match /\/etc\/bashrc/ }
+    end
+
+    describe file('/root/.bash_profile') do
       its(:content) { should match /\/etc\/bashrc/ }
     end
 

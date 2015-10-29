@@ -36,6 +36,20 @@ replace_or_add 'rm alias' do
   line 'alias rm=\'rm -i\''
 end
 
+# Add the ssh alias for agent forwarding
+replace_or_add 'rm alias' do
+  path "#{bash_path}"
+  pattern '^alias ssh=.*$'
+  line 'alias ssh=\'ssh -A\''
+end
+
+# Add the ssh alias for agent forwarding as root
+replace_or_add 'rm alias' do
+  path "#{bash_path}"
+  pattern '^alias root=.*$'
+  line 'alias root=\'ssh -A -lroot\''
+end
+
 # Configure my favorite bash prompt
 replace_or_add 'bash prompt' do
   path "#{bash_path}"
@@ -115,6 +129,14 @@ case node['platform_family']
     template 'root bashrc' do
       source 'bash_profile.erb'
       path '/root/.bashrc'
+      owner 'root'
+      group 'wheel'
+      mode '644'
+    end
+
+    template 'root fbsd_bash_profile' do
+      source 'bash_profile.erb'
+      path '/root/.bash_profile'
       owner 'root'
       group 'wheel'
       mode '644'
