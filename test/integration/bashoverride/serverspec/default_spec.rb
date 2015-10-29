@@ -122,8 +122,13 @@ describe 'linux-tweak::default' do
     describe file('/home/vagrant/.bash_profile') do
       its(:content) { should match /\/etc\/bashrc/ }
     end
-  elsif os[:family] == 'freebsd' # Test if .bashrc has been modified for root on freebsd
+
+  elsif os[:family] == 'freebsd' # Test if .bashrc and .bash_profile have been modified for root on freebsd
     describe file('/root/.bashrc') do
+      its(:content) { should match /\/etc\/bashrc/ }
+    end
+
+    describe file('/root/.bash_profile') do
       its(:content) { should match /\/etc\/bashrc/ }
     end
 

@@ -47,7 +47,7 @@ describe 'linux-tweak::default' do
     bash_path = '/etc/bashrc'
     vim_package = 'vim'
     # If not we assume the OS is Debian based
-    else
+  else
     bash_path = '/etc/bash.bashrc'
     vim_package = 'vim'
   end
@@ -122,8 +122,13 @@ describe 'linux-tweak::default' do
     describe file('/home/vagrant/.bash_profile') do
       its(:content) { should match /\/etc\/bashrc/ }
     end
-  elsif os[:family] == 'freebsd' # Test if .bashrc has been modified for root on freebsd
+
+  elsif os[:family] == 'freebsd' # Test if .bashrc and .bash_profile have been modified for root on freebsd
     describe file('/root/.bashrc') do
+      its(:content) { should match /\/etc\/bashrc/ }
+    end
+
+    describe file('/root/.bash_profile') do
       its(:content) { should match /\/etc\/bashrc/ }
     end
 

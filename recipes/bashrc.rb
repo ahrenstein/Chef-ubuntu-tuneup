@@ -119,6 +119,14 @@ case node['platform_family']
       group 'wheel'
       mode '644'
     end
+
+    template 'root fbsd_bash_profile' do
+      source 'bash_profile.erb'
+      path '/root/.bash_profile'
+      owner 'root'
+      group 'wheel'
+      mode '644'
+    end
   when 'debian', 'ubuntu'
     # Remove the local .bashrc for root
     file '/root/.bashrc' do
