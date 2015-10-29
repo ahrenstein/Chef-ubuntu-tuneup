@@ -21,13 +21,17 @@ Tweaks Performed
   4. atop
   5. bmon (Not on rhel-based systems)
   6. git
+  7. bash (FreeBSD 10 has this missing by default)
 4. Add some custom bash settings for all users
   1. Add aliases for ls -lh and ls -lhtr
   2. Add an alias to change rm into rm -i
-  3. Change the history so it maintains 5000 entries and have date/time stamps
-  4. Export a nice bash PS1
-  5. Export vim as the default editor
-  6. Delete the .bashrc for root and uids 500-900
+  3. Added an alias so "ssh" becomes "ssh -A"
+  4. Added an alias so "root" becomes "ssh -A -lroot"
+  5. Change the history so it maintains 5000 entries and have date/time stamps
+  6. Export a nice bash PS1
+  7. Export vim as the default editor
+  8. Delete the .bashrc for root and uids 500-900 (Except on FreeBSD)
+  9. Replace the .bashrc and .bash_profile for root (FreeBSD only)
 
 Requirements
 ------------
@@ -56,6 +60,7 @@ Bug Fixes & Changes
 
 1. v0.3.1
   1. For FreeBSD servers deploy the root user's bashrc to both .bashrc and .bash_profile so SSH will source it properly
+  2. Added aliases for "ssh" and "root"
 2. v0.3.0
   1. Adding FreeBSD support
   2. Dropping testing for Ubuntu 12.04. (It may still work, but there are no guarantees)
