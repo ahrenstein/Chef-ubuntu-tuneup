@@ -25,6 +25,10 @@ describe 'linux-tweak::default' do
     describe package('apparmor') do
       it { should_not be_installed }
     end
+
+    describe package('ufw') do
+      it { should_not be_installed }
+    end
   end
 
   # Verify Puppet is not installed

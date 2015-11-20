@@ -18,7 +18,7 @@ end
 case node['platform']
   when 'ubuntu'
     # This creates an array of strings and performs the Chef package functionality of each array entry via a do loop
-    %w{apparmor landscape-client-ui landscape-client-ui-install landscape-client landscape-common}.each do |pkg|
+    %w{apparmor landscape-client-ui landscape-client-ui-install landscape-client landscape-common ufw}.each do |pkg|
       package pkg do
         action :purge
       end

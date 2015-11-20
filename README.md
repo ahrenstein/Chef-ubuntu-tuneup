@@ -14,6 +14,7 @@ Tweaks Performed
   4. landscape-client (Ubuntu only)
   5. landscape-common (Ubuntu only)
   6. apparmor (Ubuntu only)
+  7. ufw (Ubuntu only)
 3. Install some packages I commonly use
   1. vim
   2. curl (For some reason not always present on base systems)
@@ -58,32 +59,34 @@ Limitations
 Bug Fixes & Changes
 ------------
 
-1. v0.3.1
+1. v0.3.2
+  1. Added ufw to the list of packages to remove
+2. v0.3.1
   1. For FreeBSD servers deploy the root user's bashrc to both .bashrc and .bash_profile so SSH will source it properly
   2. Added aliases for "ssh" and "root"
-2. v0.3.0
+3. v0.3.0
   1. Adding FreeBSD support
   2. Dropping testing for Ubuntu 12.04. (It may still work, but there are no guarantees)
   3. Changed a few minor things regarding to OS filtering when it comes to deploying certain tweaks.
-3. v0.2.9
+4. v0.2.9
   1. Kitchen is now using new boxes due to Chef.IO discontinuing some of them
   2. Removed random .DS_Store files that snuck in to a commit
-4. v0.2.8
+5. v0.2.8
   1. Remove apparmor from Ubuntu systems
   2. Testing against Ubuntu 15.04 has been added
   3. The bash PS1 is now an environment variable
-5. v0.2.7
+6. v0.2.7
   1. Added dependency on yum-epel from Supermarket for installing git, atop, and bmon from EPEL repo on rhel-based systems
   1. Removed line cookbook version requirement
   2. Remove Puppet if installed since we use Chef (Assists with migrations from Puppet to Chef)
   3. Make sure atop is installed
   4. Make sure bmon is installed on non-rhel systems
   5. Make sure git is installed
-6. v0.2.6
+7. v0.2.6
   1. Changed the range of UIDs bashrc is customized for to be 500-2000
-7. v0.2.5
+8. v0.2.5
   1. CentOS users were not sourcing the /etc/bashrc automatically. This was fixed
-8. v0.2.4
+9. v0.2.4
   1. Alias for l used a pattern match for ll so every time it ran, it would replace ll, and ll would be recreated by its resource. This led to repeating l aliases. This has been fixed.
 
 Use cases
