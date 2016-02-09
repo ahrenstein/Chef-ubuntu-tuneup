@@ -7,7 +7,7 @@ DEPRECATION WARNING
 ------------
 
 I am no longer maintaining this Chef cookbook as I have started working with Ansible instead. I don't have an Ansible version of this cookbook at this time though, and I may never make one since the tweaks contained are highly preferential and easy to reproduce using your own Ansible workflow. 
-I will still accept pull requests against this module if improvements are made to it though.
+I will still accept pull requests against this cookbook if improvements are made to it though.
 
 Tweaks Performed
 ------------
