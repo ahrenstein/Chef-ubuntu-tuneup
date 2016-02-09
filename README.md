@@ -3,6 +3,11 @@ Chef Cookbook - Linux Tweak
 
 This Chef recipe will perform a few tweaks on linux systems, and a few Ubuntu specific tweaks on Ubuntu systems.
 
+DEPRECATION WARNING
+------------
+
+I am no longer maintaining this Chef cookbook as I have started working with Ansible instead. I don't have an Ansible version of this cookbook at this time though, and I may never make one since the tweaks contained are highly preferential and easy to reproduce using your own Ansible workflow. 
+I will still accept pull requests against this module if improvements are made to it though.
 
 Tweaks Performed
 ------------
@@ -59,34 +64,36 @@ Limitations
 Bug Fixes & Changes
 ------------
 
-1. v0.3.2
+1. v0.3.3
+  1. Deprecation warning added to README
+2. v0.3.2
   1. Added ufw to the list of packages to remove
-2. v0.3.1
+3. v0.3.1
   1. For FreeBSD servers deploy the root user's bashrc to both .bashrc and .bash_profile so SSH will source it properly
   2. Added aliases for "ssh" and "root"
-3. v0.3.0
+4. v0.3.0
   1. Adding FreeBSD support
   2. Dropping testing for Ubuntu 12.04. (It may still work, but there are no guarantees)
   3. Changed a few minor things regarding to OS filtering when it comes to deploying certain tweaks.
-4. v0.2.9
+5. v0.2.9
   1. Kitchen is now using new boxes due to Chef.IO discontinuing some of them
   2. Removed random .DS_Store files that snuck in to a commit
-5. v0.2.8
+6. v0.2.8
   1. Remove apparmor from Ubuntu systems
   2. Testing against Ubuntu 15.04 has been added
   3. The bash PS1 is now an environment variable
-6. v0.2.7
+7. v0.2.7
   1. Added dependency on yum-epel from Supermarket for installing git, atop, and bmon from EPEL repo on rhel-based systems
   1. Removed line cookbook version requirement
   2. Remove Puppet if installed since we use Chef (Assists with migrations from Puppet to Chef)
   3. Make sure atop is installed
   4. Make sure bmon is installed on non-rhel systems
   5. Make sure git is installed
-7. v0.2.6
+8. v0.2.6
   1. Changed the range of UIDs bashrc is customized for to be 500-2000
-8. v0.2.5
+9. v0.2.5
   1. CentOS users were not sourcing the /etc/bashrc automatically. This was fixed
-9. v0.2.4
+10. v0.2.4
   1. Alias for l used a pattern match for ll so every time it ran, it would replace ll, and ll would be recreated by its resource. This led to repeating l aliases. This has been fixed.
 
 Use cases
